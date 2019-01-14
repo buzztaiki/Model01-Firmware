@@ -242,10 +242,10 @@ KEYMAPS(
    ___),
 
   [FUNCTION] =  KEYMAP_STACKED
-  (___,      Key_F1,           Key_F2,      Key_F3,     Key_F4,        Key_F5,           Key_CapsLock,
-   Key_Tab,  ___,              Key_mouseUp, ___,        Key_mouseBtnR, Key_mouseWarpEnd, Key_mouseWarpNE,
-   Key_Home, Key_mouseL,       Key_mouseDn, Key_mouseR, Key_mouseBtnL, Key_mouseWarpNW,
-   Key_End,  Key_PrintScreen,  Key_Insert,  ___,        Key_mouseBtnM, Key_mouseWarpSW,  Key_mouseWarpSE,
+  (___,      Key_F1,            Key_F2,      Key_F3,            Key_F4,        Key_F5,           Key_CapsLock,
+   Key_Tab,  Key_mouseScrollUp, Key_mouseUp, Key_mouseScrollDn, Key_mouseBtnR, Key_mouseWarpEnd, Key_mouseWarpNE,
+   Key_Home, Key_mouseL,        Key_mouseDn, Key_mouseR,        Key_mouseBtnL, Key_mouseWarpNW,
+   Key_End,  Key_PrintScreen,   Key_Insert,  ___,               Key_mouseBtnM, Key_mouseWarpSW,  Key_mouseWarpSE,
    ___, Key_Delete, ___, ___,
    ___,
 
@@ -472,6 +472,14 @@ void setup() {
   // one wants to use these layers, just set the default layer to one in EEPROM,
   // by using the `settings.defaultLayer` Focus command.
   EEPROMKeymap.setup(5, EEPROMKeymap.Mode::EXTEND);
+
+  MouseKeys.speed = 1;
+  MouseKeys.speedDelay = 0;
+  MouseKeys.accelSpeed = 4;
+  MouseKeys.accelDelay = 50;
+  MouseKeys.wheelSpeed = 1;
+  MouseKeys.wheelDelay = 50;
+  MouseKeys.setSpeedLimit(16);
 }
 
 /** loop is the second of the standard Arduino sketch functions.
