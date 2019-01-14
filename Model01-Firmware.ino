@@ -54,6 +54,8 @@
 // Support for USB quirks, like changing the key state report protocol
 #include <Kaleidoscope-USB-Quirks.h>
 
+#include <Kaleidoscope-Qukeys.h>
+
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
   * The names aren't particularly important. What is important is that each
   * is unique.
@@ -346,6 +348,11 @@ USE_MAGIC_COMBOS({.action = toggleKeyboardProtocol,
 // The order can be important. For example, LED effects are
 // added in the order they're listed here.
 KALEIDOSCOPE_INIT_PLUGINS(
+  // Qukeys will work best if it's the first plugin in the use() list,
+  // because when typing overlap occurs, it will (temporarily) mask
+  // keys and block them from being processed by other plugins.
+  Qukeys,
+
   // The EEPROMSettings & EEPROMKeymap plugins make it possible to have an
   // editable keymap in EEPROM.
   EEPROMSettings,
@@ -433,8 +440,27 @@ void setup() {
   MouseKeys.wheelDelay = 50;
   MouseKeys.setSpeedLimit(16);
 
-  
-  
+
+// QUKEYS(
+//   //                  l, r, c, alt_keycode
+//   kaleidosecope::Qukey(0, 2, 1, Key_LeftGui),      // A/cmd
+//   kaleidoscope::Qukey(0, 2, 2, Key_LeftAlt),      // S/alt
+//   kaleidoscope::Qukey(0, 2, 3, Key_LeftControl),  // D/ctrl
+//   kaleidoscope::Qukey(0, 2, 4, Key_LeftShift),    // F/shift
+//   kaleidoscope::Qukey(0, 1, 14, Key_LeftShift),   // P/shift
+//   kaleidoscope::Qukey(0, 3, 15, Key_LeftShift)    // Minus/shift
+// )
+
+  // l, r, c, alt_keycode
+  // see https://github.com/keyboardio/Kaleidoscope-MagicCombo#further-reading
+  QUKEYS(
+    // bksp/cmd
+    kaleidoscope::Qukey(PRIMARY, 1, 7, Key_LeftGui),
+    kaleidoscope::Qukey(FUNCTION, 1, 7, Key_LeftGui),
+    // space/cmd
+    kaleidoscope::Qukey(PRIMARY, 1, 8, Key_RightGui),
+    kaleidoscope::Qukey(FUNCTION, 1, 8, Key_RightGui),
+  )
 }
 
 /** loop is the second of the standard Arduino sketch functions.
