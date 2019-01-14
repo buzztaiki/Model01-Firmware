@@ -14,45 +14,45 @@
 
 
 // The Kaleidoscope core
-#include "Kaleidoscope.h"
+#include <Kaleidoscope.h>
 
 // Support for storing the keymap in EEPROM
-#include "Kaleidoscope-EEPROM-Settings.h"
-#include "Kaleidoscope-EEPROM-Keymap.h"
+#include <Kaleidoscope-EEPROM-Settings.h>
+#include <Kaleidoscope-EEPROM-Keymap.h>
 
 // Support for communicating with the host via a simple Serial protocol
-#include "Kaleidoscope-FocusSerial.h"
+#include <Kaleidoscope-FocusSerial.h>
 
 // Support for keys that move the mouse
-#include "Kaleidoscope-MouseKeys.h"
+#include <Kaleidoscope-MouseKeys.h>
 
 // Support for macros
-#include "Kaleidoscope-Macros.h"
+#include <Kaleidoscope-Macros.h>
 
 // Support for controlling the keyboard's LEDs
-#include "Kaleidoscope-LEDControl.h"
+#include <Kaleidoscope-LEDControl.h>
 
-// Support for "Numpad" mode, which is mostly just the Numpad specific LED mode
-#include "Kaleidoscope-NumPad.h"
+// Support for >Numpad> mode, which is mostly just the Numpad specific LED mode
+#include <Kaleidoscope-NumPad.h>
 
-// Support for the "Boot greeting" effect, which pulses the 'LED' button for 10s
+// Support for the >Boot greeting> effect, which pulses the 'LED' button for 10s
 // when the keyboard is connected to a computer (or that computer is powered on)
-#include "Kaleidoscope-LEDEffect-BootGreeting.h"
+#include <Kaleidoscope-LEDEffect-BootGreeting.h>
 
 // Support for LED modes that set all LEDs to a single color
-#include "Kaleidoscope-LEDEffect-SolidColor.h"
+#include <Kaleidoscope-LEDEffect-SolidColor.h>
 
 // Support for Keyboardio's internal keyboard testing mode
-#include "Kaleidoscope-Model01-TestMode.h"
+#include <Kaleidoscope-Model01-TestMode.h>
 
 // Support for host power management (suspend & wakeup)
-#include "Kaleidoscope-HostPowerManagement.h"
+#include <Kaleidoscope-HostPowerManagement.h>
 
 // Support for magic combos (key chords that trigger an action)
-#include "Kaleidoscope-MagicCombo.h"
+#include <Kaleidoscope-MagicCombo.h>
 
 // Support for USB quirks, like changing the key state report protocol
-#include "Kaleidoscope-USB-Quirks.h"
+#include <Kaleidoscope-USB-Quirks.h>
 
 /** This 'enum' is a list of all the macros used by the Model 01's firmware
   * The names aren't particularly important. What is important is that each
@@ -424,6 +424,7 @@ void setup() {
   // by using the `settings.defaultLayer` Focus command.
   EEPROMKeymap.setup(5, EEPROMKeymap.Mode::EXTEND);
 
+
   MouseKeys.speed = 1;
   MouseKeys.speedDelay = 0;
   MouseKeys.accelSpeed = 4;
@@ -431,6 +432,9 @@ void setup() {
   MouseKeys.wheelSpeed = 1;
   MouseKeys.wheelDelay = 50;
   MouseKeys.setSpeedLimit(16);
+
+  
+  
 }
 
 /** loop is the second of the standard Arduino sketch functions.
